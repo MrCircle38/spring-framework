@@ -519,10 +519,11 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 			// Prepare this context for refreshing.
 			prepareRefresh();
 
-			// Tell the subclass to refresh the internal bean factory.
+			// Tell the subclass to refresh the internal bean factory.生成了BeanDefinitionMap 是在ConfigurableListableBeanFactory的对象中
 			ConfigurableListableBeanFactory beanFactory = obtainFreshBeanFactory();
 
 			// Prepare the bean factory for use in this context.
+			// 对上面产生的beanFactory做加工 用于当前容器使用的beanFactory 生成beanDefinitioMap有值 但并做bean与bean之前相互关联mergebeanDefinitioMap无值
 			prepareBeanFactory(beanFactory);
 
 			try {
@@ -532,7 +533,7 @@ public abstract class AbstractApplicationContext extends DefaultResourceLoader
 				// Invoke factory processors registered as beans in the context.
 				invokeBeanFactoryPostProcessors(beanFactory);
 
-				// Register bean processors that intercept bean creation.
+				// Register bean processors that intercept bean creation.对mergeBeanDefinition做操作
 				registerBeanPostProcessors(beanFactory);
 
 				// Initialize message source for this context.
